@@ -1,0 +1,26 @@
+{
+  "name": "lambda-timelapse-api",
+  "version": "1.0.0",
+  "description": "A simple lambda based api to handle GET and POST requests for time-lapse stills and video",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build:live",
+    "build:live": "nodemon -exec ./node_modules/.bin/ts-node -- ./index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwats/lambda-timelapse-api.git"
+  },
+  "author": "Eric Julius",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dwats/lambda-timelapse-api/issues"
+  },
+  "homepage": "https://github.com/dwats/lambda-timelapse-api#readme",
+  "devDependencies": {
+    "@types/node": "^10.0.8",
+    "nodemon": "^1.17.4",
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
+  }
+}

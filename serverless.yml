@@ -1,0 +1,34 @@
+service: timelapse-api
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs8.10
+
+package:
+  include:
+    - node_modules/**
+
+functions:
+  snapshot:
+    handler: handler.snapshot
+    description:
+    memorySize: 128
+    events:
+      - http:
+          path: /snapshot
+          method: get
+      - http:
+          path: /snapshot
+          method: post
+  timelapse:
+    handler: handler.timelapse
+    description:
+    memorySize: 128
+    events:
+      - http:
+          path: /timelapse
+          method: get
+      - http:
+          path: /timelapse
+          method: post
