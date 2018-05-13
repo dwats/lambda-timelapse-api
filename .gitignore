@@ -60,3 +60,4 @@ typings/
 # Distribute / build
 dist
 build
+.serverless
