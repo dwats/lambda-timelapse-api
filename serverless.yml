@@ -4,14 +4,18 @@ provider:
   name: aws
   region: us-east-1
   runtime: nodejs8.10
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "*"
 
-package:
-  include:
-    - node_modules/**
+custom:
+  bucket: timelapse.ericjuli.us
 
 functions:
   snapshot:
-    handler: handler.snapshot
+    handler: dist/handler.snapshot
     description:
     memorySize: 128
     events:
@@ -21,14 +25,8 @@ functions:
       - http:
           path: /snapshot
           method: post
-  timelapse:
-    handler: handler.timelapse
-    description:
-    memorySize: 128
-    events:
-      - http:
-          path: /timelapse
-          method: get
-      - http:
-          path: /timelapse
-          method: post
+      - s3:
+          bucket: ${self:custom.bucket}
+          event: s3:ObjectCreated:*
+          rules:
+            - suffix: .png
